@@ -99,24 +99,11 @@
 ## 📥 安装方法
 
 ### 方式一：直接安装（推荐）
-1. 下载 `S-APICONT内测V1.5.jar` 或 `API-obfuscated.jar`
+1. 下载 `S-APICONT内测V1.5.jar` 
 2. 打开 Burp Suite → Extensions → Add
 3. Extension Type 选择 `Java`
 4. 选择下载的 JAR 文件
 5. 点击 Next 完成安装
-
-### 方式二：从源码构建
-```bash
-# 克隆仓库
-git clone https://github.com/your-repo/S-APICONT.git
-cd S-APICONT
-
-# 构建普通版本
-build.bat
-
-# 构建混淆版本（推荐用于发布）
-build-obfuscated.bat
-```
 
 ---
 
